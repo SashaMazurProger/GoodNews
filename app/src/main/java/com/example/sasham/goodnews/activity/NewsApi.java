@@ -1,6 +1,7 @@
 package com.example.sasham.goodnews.activity;
 
 import com.example.sasham.goodnews.model.Article;
+import com.example.sasham.goodnews.model.ArticlesList;
 
 import java.util.List;
 
@@ -15,6 +16,6 @@ import retrofit2.http.Query;
 public interface NewsApi {
 
     @GET("/v2/top-headlines")
-    Call<List<Article>> getTopHeadlines(@Query("country") String countryCode,@Query("apiKey") String apiKey);
+    Call<ArticlesList> getTopHeadlines(@Query("country") String countryCode, @Query("apiKey") String apiKey);
 
 }
