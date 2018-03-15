@@ -44,7 +44,7 @@ public class ArticleAdapter extends RecyclerView.Adapter<ArticleAdapter.ArticleV
         Picasso.get().load(article.getUrlToImage())
                 .placeholder(ContextCompat.getDrawable(
                         holder.image.getContext(),
-                        R.drawable.article_list_item_image_placeholder))
+                        R.drawable.ic_image_placeholder))
                 .into(holder.image);
 
     }
