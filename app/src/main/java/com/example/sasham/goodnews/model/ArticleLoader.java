@@ -2,17 +2,15 @@ package com.example.sasham.goodnews.model;
 
 import android.content.Context;
 import android.support.v4.content.AsyncTaskLoader;
-import android.support.v7.widget.LinearLayoutManager;
 import android.util.Log;
-import android.widget.Toast;
 
-import com.example.sasham.goodnews.activity.App;
+import com.example.sasham.goodnews.App;
+import com.example.sasham.goodnews.R;
+import com.example.sasham.goodnews.utils.SharedPreferencesHelper;
 
 import java.io.IOException;
 import java.util.List;
 
-import retrofit2.Call;
-import retrofit2.Callback;
 import retrofit2.Response;
 
 /**
@@ -41,8 +39,12 @@ public class ArticleLoader extends AsyncTaskLoader<List<Article>> {
 
         Response response = null;
 
+        String keyCountry=getContext().getString(R.string.articles_settings_country_key);
+        String defCountry=getContext().getString(R.string.articles_settings_country_default);
+        String codeCountry= SharedPreferencesHelper.getSharedPreferenceString(getContext(),keyCountry,defCountry);
+
         try {
-            response = App.getNewsApi().getTopHeadlines("ua", App.getNewsApiKey()).execute();
+            response = App.getNewsApi().getTopHeadlines(codeCountry, App.getNewsApiKey()).execute();
         } catch (IOException e) {
             e.printStackTrace();
         }

@@ -1,4 +1,4 @@
-package com.example.sasham.goodnews.activity;
+package com.example.sasham.goodnews.api;
 
 import com.example.sasham.goodnews.model.Article;
 import com.example.sasham.goodnews.model.ArticlesList;

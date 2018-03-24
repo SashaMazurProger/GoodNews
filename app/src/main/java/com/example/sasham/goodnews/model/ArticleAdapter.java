@@ -1,5 +1,6 @@
 package com.example.sasham.goodnews.model;
 
+import android.content.Context;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -9,8 +10,10 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.example.sasham.goodnews.R;
+import com.example.sasham.goodnews.utils.DateUtil;
 import com.squareup.picasso.Picasso;
 
+import java.text.ParseException;
 import java.util.List;
 
 /**
@@ -19,9 +22,11 @@ import java.util.List;
 
 public class ArticleAdapter extends RecyclerView.Adapter<ArticleAdapter.ArticleViewHolder> {
 
+    private Context mContext;
     private List<Article> mArticles;
 
-    public ArticleAdapter(List<Article> articles) {
+    public ArticleAdapter(Context context, List<Article> articles) {
+        mContext = context;
         this.mArticles = articles;
     }
 
@@ -37,16 +42,29 @@ public class ArticleAdapter extends RecyclerView.Adapter<ArticleAdapter.ArticleV
         Article article = mArticles.get(position);
 
         holder.title.setText(article.getTitle());
-        holder.time.setText(article.getPublishedAt());
+
+        //set published time ago
+        String patternTime = mContext.getString(R.string.time_pattern);
+        String time;
+        try {
+            time = DateUtil.convertToTimeAgoString(mContext, article.getPublishedAt(), patternTime);
+        } catch (ParseException e) {
+            time = article.getPublishedAt();
+        }
+        holder.time.setText(time);
+
         holder.source.setText(article.getAuthor());
 
         //set article image
-        Picasso.get().load(article.getUrlToImage())
-                .placeholder(ContextCompat.getDrawable(
-                        holder.image.getContext(),
-                        R.drawable.ic_image_placeholder))
-                .into(holder.image);
-
+        if (article.getUrlToImage() != null && !article.getUrlToImage().isEmpty())
+            Picasso.get().load(article.getUrlToImage())
+                    .placeholder(ContextCompat.getDrawable(
+                            holder.image.getContext(),
+                            R.drawable.ic_article_image_placeholder))
+                    .into(holder.image);
+        else {
+            holder.image.setImageResource(R.drawable.ic_article_image_placeholder);
+        }
     }
 
     @Override

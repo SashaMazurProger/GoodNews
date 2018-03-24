@@ -30,6 +30,9 @@ public class NewsActivity extends AppCompatActivity {
                 case R.id.navigation_dashboard:
                     return true;
                 case R.id.navigation_notifications:
+                    fragmentManager.beginTransaction()
+                            .replace(R.id.main_content_container,new ArticlesSettingsFragment())
+                            .commit();
                     return true;
             }
             return false;

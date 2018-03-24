@@ -1,9 +1,11 @@
-package com.example.sasham.goodnews.activity;
+package com.example.sasham.goodnews;
 
 import android.app.Application;
 import android.content.Context;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
+
+import com.example.sasham.goodnews.api.NewsApi;
 
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;

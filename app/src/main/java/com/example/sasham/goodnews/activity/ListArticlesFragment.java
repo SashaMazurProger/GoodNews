@@ -2,7 +2,6 @@ package com.example.sasham.goodnews.activity;
 
 
 import android.os.Bundle;
-import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.LoaderManager;
 import android.support.v4.content.Loader;
@@ -11,20 +10,15 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Toast;
 
+import com.example.sasham.goodnews.App;
 import com.example.sasham.goodnews.R;
 import com.example.sasham.goodnews.model.Article;
 import com.example.sasham.goodnews.model.ArticleAdapter;
 import com.example.sasham.goodnews.model.ArticleLoader;
-import com.example.sasham.goodnews.model.ArticlesList;
 import com.wang.avi.AVLoadingIndicatorView;
 
 import java.util.List;
-
-import retrofit2.Call;
-import retrofit2.Callback;
-import retrofit2.Response;
 
 
 public class ListArticlesFragment extends Fragment implements LoaderManager.LoaderCallbacks<Object> {
@@ -73,7 +67,7 @@ public class ListArticlesFragment extends Fragment implements LoaderManager.Load
         mLoadingView.hide();
 
         List<Article> articles = (List<Article>) data;
-        mAdapter = new ArticleAdapter(articles);
+        mAdapter = new ArticleAdapter(getContext(),articles);
         mRecyclerView.setAdapter(mAdapter);
         LinearLayoutManager layoutManager = new LinearLayoutManager(getContext());
         mRecyclerView.setLayoutManager(layoutManager);
