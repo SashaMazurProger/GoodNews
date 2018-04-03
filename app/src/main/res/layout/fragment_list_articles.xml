@@ -5,6 +5,14 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
+    <!--<TextView-->
+        <!--android:id="@+id/tv_no_internet_connection"-->
+        <!--android:layout_width="match_parent"-->
+        <!--android:layout_height="wrap_content" -->
+        <!--android:text="@string/no_connection"-->
+        <!--android:layout_gravity="top"-->
+        <!--android:backgroundTint=""-->
+        <!--/>-->
     <android.support.v7.widget.RecyclerView
         android:id="@+id/top_headlines_recycler_view"
         android:layout_width="match_parent"

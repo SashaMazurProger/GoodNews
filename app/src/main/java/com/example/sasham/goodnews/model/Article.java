@@ -3,29 +3,48 @@ package com.example.sasham.goodnews.model;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
-public class Article {
+import java.io.Serializable;
+
+//@SuppressWarnings("serial")
+public class Article implements Serializable{
 
     @SerializedName("source")
     @Expose
     private Source source;
+
     @SerializedName("author")
     @Expose
     private String author;
+
     @SerializedName("title")
     @Expose
     private String title;
+
     @SerializedName("description")
     @Expose
     private String description;
+
     @SerializedName("url")
     @Expose
     private String url;
+
     @SerializedName("urlToImage")
     @Expose
     private String urlToImage;
+
     @SerializedName("publishedAt")
     @Expose
     private String publishedAt;
+
+    public Article(Source source, String author, String title, String description, String url, String urlToImage, String publishedAt) {
+        this.source = source;
+        this.author = author;
+        this.title = title;
+        this.description = description;
+        this.url = url;
+        this.urlToImage = urlToImage;
+        this.publishedAt = publishedAt;
+    }
 
     public Source getSource() {
         return source;

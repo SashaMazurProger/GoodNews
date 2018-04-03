@@ -47,7 +47,7 @@ public class ListArticlesFragment extends Fragment implements LoaderManager.Load
             getLoaderManager().initLoader(ARTICLES_LOADER, null, this);
             mLoadingView.show();
         } else {
-            //?????
+          //TODO: set no connection view
         }
         return rootView;
     }

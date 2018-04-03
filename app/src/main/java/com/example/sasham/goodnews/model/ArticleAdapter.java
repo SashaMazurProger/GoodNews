@@ -1,6 +1,7 @@
 package com.example.sasham.goodnews.model;
 
 import android.content.Context;
+import android.content.Intent;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -10,6 +11,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.example.sasham.goodnews.R;
+import com.example.sasham.goodnews.activity.ArticleDetailActivity;
 import com.example.sasham.goodnews.utils.DateUtil;
 import com.squareup.picasso.Picasso;
 
@@ -39,7 +41,7 @@ public class ArticleAdapter extends RecyclerView.Adapter<ArticleAdapter.ArticleV
     @Override
     public void onBindViewHolder(ArticleViewHolder holder, int position) {
 
-        Article article = mArticles.get(position);
+        final Article article = mArticles.get(position);
 
         holder.title.setText(article.getTitle());
 
@@ -59,12 +61,22 @@ public class ArticleAdapter extends RecyclerView.Adapter<ArticleAdapter.ArticleV
         if (article.getUrlToImage() != null && !article.getUrlToImage().isEmpty())
             Picasso.get().load(article.getUrlToImage())
                     .placeholder(ContextCompat.getDrawable(
-                            holder.image.getContext(),
+                            mContext,
                             R.drawable.ic_article_image_placeholder))
                     .into(holder.image);
         else {
             holder.image.setImageResource(R.drawable.ic_article_image_placeholder);
         }
+
+        //set item click listener
+        holder.root.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent=new Intent(mContext, ArticleDetailActivity.class);
+                intent.putExtra(ArticleDetailActivity.ARTICELE_ARGS,article);
+                mContext.startActivity(intent);
+            }
+        });
     }
 
     @Override
@@ -77,12 +89,13 @@ public class ArticleAdapter extends RecyclerView.Adapter<ArticleAdapter.ArticleV
     }
 
     class ArticleViewHolder extends RecyclerView.ViewHolder {
-
+        private View root;
         private TextView title, time, source;
         private ImageView image;
 
         public ArticleViewHolder(View itemView) {
             super(itemView);
+            root=itemView.findViewById(R.id.article_list_item_container);
             title = (TextView) itemView.findViewById(R.id.article_list_item_title);
             time = (TextView) itemView.findViewById(R.id.article_list_item_published_time);
             source = (TextView) itemView.findViewById(R.id.article_list_item_source_name);

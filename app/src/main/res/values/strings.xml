@@ -22,5 +22,7 @@
     <string name="time_ago_seconds">sec</string>
     <string name="time_ago_now">now</string>
     <string name="time_pattern" translatable="false">yyyy-MM-dd\'T\'HH:mm:ss\'Z\'</string>
+    <string name="no_connection">No connection</string>
+    <string name="article_detail_to_website_text">more</string>
 
 </resources>
