@@ -24,6 +24,11 @@
         </activity>
         <activity android:name=".activity.ArticleDetailActivity" />
         <activity android:name=".activity.ArticleWebActivity"></activity>
+        <service android:name=".model.NewsFirebaseJobService" android:permission="android.permission.RECEIVE_BOOT_COMPLETED">
+            <intent-filter>
+                <action android:name="com.firebase.jobdispatcher.ACTION_EXECUTE"/>
+            </intent-filter>
+        </service>
     </application>
 
 </manifest>

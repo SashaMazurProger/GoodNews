@@ -7,12 +7,22 @@ import android.support.design.widget.CoordinatorLayout;
 import android.support.v4.app.FragmentManager;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.MenuItem;
-import android.widget.TextView;
 
 import com.example.sasham.goodnews.R;
+import com.example.sasham.goodnews.model.NewsFirebaseJobService;
+import com.firebase.jobdispatcher.Constraint;
+import com.firebase.jobdispatcher.FirebaseJobDispatcher;
+import com.firebase.jobdispatcher.GooglePlayDriver;
+import com.firebase.jobdispatcher.Job;
+import com.firebase.jobdispatcher.Lifetime;
+import com.firebase.jobdispatcher.Trigger;
 
 public class NewsActivity extends AppCompatActivity {
+
+    private static final String LAST_ARTICLE_JOB_SERVICE_TAG = "last_article_service";
+    private static final String TAG = NewsActivity.class.getSimpleName();
 
     private BottomNavigationView.OnNavigationItemSelectedListener mOnNavigationItemSelectedListener
             = new BottomNavigationView.OnNavigationItemSelectedListener() {
@@ -51,6 +61,25 @@ public class NewsActivity extends AppCompatActivity {
 
         Toolbar toolbar=(Toolbar)findViewById(R.id.main_toolbar);
         setSupportActionBar(toolbar);
+
+        initFirebaseJobDispatcher();
+    }
+
+    private void initFirebaseJobDispatcher() {
+        FirebaseJobDispatcher firebaseJobDispatcher=new FirebaseJobDispatcher(new GooglePlayDriver(this));
+
+        Job job=firebaseJobDispatcher.newJobBuilder()
+                .setService(NewsFirebaseJobService.class)
+                .setTag(LAST_ARTICLE_JOB_SERVICE_TAG)
+                .setLifetime(Lifetime.UNTIL_NEXT_BOOT)
+                .setRecurring(true)
+                .setTrigger(Trigger.executionWindow(0,5))
+                .setReplaceCurrent(false)
+                .setConstraints(Constraint.ON_ANY_NETWORK)
+                .build();
+
+        firebaseJobDispatcher.mustSchedule(job);
+        Log.d(TAG, "initFirebaseJobDispatcher: ok");
     }
 
 }

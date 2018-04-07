@@ -6,6 +6,7 @@ import android.util.Log;
 
 import com.example.sasham.goodnews.App;
 import com.example.sasham.goodnews.R;
+import com.example.sasham.goodnews.utils.NetworkUtil;
 import com.example.sasham.goodnews.utils.SharedPreferencesHelper;
 
 import java.io.IOException;
@@ -35,23 +36,6 @@ public class ArticleLoader extends AsyncTaskLoader<List<Article>> {
     public List<Article> loadInBackground() {
         Log.d(TAG, "loadInBackground: ---");
 
-        List<Article> articles;
-
-        Response response = null;
-
-        String keyCountry=getContext().getString(R.string.articles_settings_country_key);
-        String defCountry=getContext().getString(R.string.articles_settings_country_default);
-        String codeCountry= SharedPreferencesHelper.getSharedPreferenceString(getContext(),keyCountry,defCountry);
-
-        try {
-            response = App.getNewsApi().getTopHeadlines(codeCountry, App.getNewsApiKey()).execute();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-        ArticlesList articlesList = (ArticlesList) response.body();
-        articles = articlesList.getArticles();
-
-        return articles;
-
+        return NetworkUtil.getTopHeadlines(getContext(),getContext().getResources().getInteger(R.integer.COUNT_TOP_HEADLINES));
     }
 }

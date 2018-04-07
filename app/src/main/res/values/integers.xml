@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <integer name="COUNT_TOP_HEADLINES">100</integer>
+</resources>
