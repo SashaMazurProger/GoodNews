@@ -21,7 +21,7 @@ import com.firebase.jobdispatcher.Trigger;
 
 public class NewsActivity extends AppCompatActivity {
 
-    private static final String LAST_ARTICLE_JOB_SERVICE_TAG = "last_article_service";
+    private static final String SHOW_LAST_ARTICLE_JOB_SERVICE_TAG = "last_article_service";
     private static final String TAG = NewsActivity.class.getSimpleName();
 
     private BottomNavigationView.OnNavigationItemSelectedListener mOnNavigationItemSelectedListener
@@ -29,19 +29,17 @@ public class NewsActivity extends AppCompatActivity {
 
         @Override
         public boolean onNavigationItemSelected(@NonNull MenuItem item) {
-            FragmentManager fragmentManager=getSupportFragmentManager();
+            FragmentManager fragmentManager = getSupportFragmentManager();
 
             switch (item.getItemId()) {
                 case R.id.navigation_home:
                     fragmentManager.beginTransaction()
-                            .replace(R.id.main_content_container,new ListArticlesFragment())
+                            .replace(R.id.main_content_container, new ListArticlesFragment())
                             .commit();
                     return true;
-                case R.id.navigation_dashboard:
-                    return true;
-                case R.id.navigation_notifications:
+                case R.id.articles_settings:
                     fragmentManager.beginTransaction()
-                            .replace(R.id.main_content_container,new ArticlesSettingsFragment())
+                            .replace(R.id.main_content_container, new ArticlesSettingsFragment())
                             .commit();
                     return true;
             }
@@ -56,24 +54,33 @@ public class NewsActivity extends AppCompatActivity {
 
         BottomNavigationView navigation = (BottomNavigationView) findViewById(R.id.navigation);
         navigation.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener);
-        CoordinatorLayout.LayoutParams layoutParams=(CoordinatorLayout.LayoutParams) navigation.getLayoutParams();
+        CoordinatorLayout.LayoutParams layoutParams = (CoordinatorLayout.LayoutParams) navigation.getLayoutParams();
         layoutParams.setBehavior(new BottomNavigationBehavior());
 
-        Toolbar toolbar=(Toolbar)findViewById(R.id.main_toolbar);
+        Toolbar toolbar = (Toolbar) findViewById(R.id.main_toolbar);
         setSupportActionBar(toolbar);
 
+        setDefaultContent();
         initFirebaseJobDispatcher();
     }
 
-    private void initFirebaseJobDispatcher() {
-        FirebaseJobDispatcher firebaseJobDispatcher=new FirebaseJobDispatcher(new GooglePlayDriver(this));
+    private void setDefaultContent() {
+        FragmentManager fragmentManager = getSupportFragmentManager();
 
-        Job job=firebaseJobDispatcher.newJobBuilder()
+        fragmentManager.beginTransaction()
+                .replace(R.id.main_content_container, new ListArticlesFragment())
+                .commit();
+    }
+
+    private void initFirebaseJobDispatcher() {
+        FirebaseJobDispatcher firebaseJobDispatcher = new FirebaseJobDispatcher(new GooglePlayDriver(this));
+
+        Job job = firebaseJobDispatcher.newJobBuilder()
                 .setService(NewsFirebaseJobService.class)
-                .setTag(LAST_ARTICLE_JOB_SERVICE_TAG)
+                .setTag(SHOW_LAST_ARTICLE_JOB_SERVICE_TAG)
                 .setLifetime(Lifetime.UNTIL_NEXT_BOOT)
                 .setRecurring(true)
-                .setTrigger(Trigger.executionWindow(0,5))
+                .setTrigger(Trigger.executionWindow(0, 5))
                 .setReplaceCurrent(false)
                 .setConstraints(Constraint.ON_ANY_NETWORK)
                 .build();
