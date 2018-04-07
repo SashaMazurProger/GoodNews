@@ -44,7 +44,7 @@ public class App extends Application {
     public static boolean isOnline(Context context) {
         ConnectivityManager connectivityManager = (ConnectivityManager) context.getSystemService(CONNECTIVITY_SERVICE);
         NetworkInfo networkInfo = connectivityManager.getActiveNetworkInfo();
-        if (networkInfo.isConnectedOrConnecting()) {
+        if (networkInfo!=null&&networkInfo.isConnectedOrConnecting()) {
             return true;
         } else {
             return false;
