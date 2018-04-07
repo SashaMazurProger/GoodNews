@@ -17,6 +17,7 @@ import com.example.sasham.goodnews.App;
 import com.example.sasham.goodnews.R;
 import com.example.sasham.goodnews.model.Article;
 import com.example.sasham.goodnews.model.ArticleAdapter;
+import com.example.sasham.goodnews.model.ArticleCategoryAdapter;
 import com.example.sasham.goodnews.model.ArticleLoader;
 import com.wang.avi.AVLoadingIndicatorView;
 
@@ -30,9 +31,11 @@ public class ListArticlesFragment extends Fragment implements LoaderManager.Load
     private static final String TAG = ListArticlesFragment.class.getSimpleName();
     private RecyclerView mRecyclerView;
     private ArticleAdapter mAdapter;
+    private AVLoadingIndicatorView mLoadingView;
+    private RecyclerView mCategoriesView;
 
     private static final int ARTICLES_LOADER = 1;
-    private AVLoadingIndicatorView mLoadingView;
+
 
     public ListArticlesFragment() {
         // Required empty public constructor
@@ -47,18 +50,32 @@ public class ListArticlesFragment extends Fragment implements LoaderManager.Load
         View rootView = inflater.inflate(R.layout.fragment_list_articles, container, false);
 
         TextView noConnectionView = (TextView) rootView.findViewById(R.id.tv_no_internet_connection);
+        mCategoriesView = (RecyclerView) rootView.findViewById(R.id.article_categories_recycler_view);
         mRecyclerView = (RecyclerView) rootView.findViewById(R.id.top_headlines_recycler_view);
         mLoadingView = (AVLoadingIndicatorView) rootView.findViewById(R.id.articles_list_loading_view);
 
         if (App.isOnline(getContext())) {
+            initCategoriesList();
             getLoaderManager().initLoader(ARTICLES_LOADER, null, this);
             mLoadingView.show();
             noConnectionView.setVisibility(GONE);
         } else {
             mLoadingView.setVisibility(GONE);
             noConnectionView.setVisibility(View.VISIBLE);
+            mCategoriesView.setVisibility(GONE);
         }
         return rootView;
+    }
+
+    private void initCategoriesList() {
+        RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(
+                getContext(),
+                LinearLayoutManager.HORIZONTAL,
+                false
+        );
+
+        mCategoriesView.setLayoutManager(layoutManager);
+        mCategoriesView.setAdapter(new ArticleCategoryAdapter(getContext()));
     }
 
     @Override

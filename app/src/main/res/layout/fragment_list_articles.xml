@@ -1,30 +1,41 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:orientation="vertical">
 
-    <TextView
-        android:id="@+id/tv_no_internet_connection"
-        android:layout_width="match_parent"
-        android:layout_height="50dp"
-        android:gravity="center"
-        android:text="@string/no_connection"
-        android:layout_gravity="top"
-        android:background="@android:color/holo_red_light"
-        />
     <android.support.v7.widget.RecyclerView
-        android:id="@+id/top_headlines_recycler_view"
+        android:id="@+id/article_categories_recycler_view"
         android:layout_width="match_parent"
-        android:layout_height="match_parent" />
+        android:layout_height="wrap_content" />
 
-    <com.wang.avi.AVLoadingIndicatorView
-        android:id="@+id/articles_list_loading_view"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        app:indicatorColor="@color/colorPrimary"
-        app:indicatorName="LineScaleIndicator" />
-</FrameLayout>
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <TextView
+            android:id="@+id/tv_no_internet_connection"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:layout_gravity="bottom"
+            android:background="@android:color/holo_red_light"
+            android:gravity="center"
+            android:text="@string/no_connection" />
+
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/top_headlines_recycler_view"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" />
+
+        <com.wang.avi.AVLoadingIndicatorView
+            android:id="@+id/articles_list_loading_view"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            app:indicatorColor="@color/colorPrimary"
+            app:indicatorName="LineScaleIndicator" />
+    </FrameLayout>
+</LinearLayout>
 
