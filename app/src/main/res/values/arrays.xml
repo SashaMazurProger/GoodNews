@@ -1,4 +1,23 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-
+    <string-array name="article_category_titles">
+        <item>@string/article_category_all_title</item>
+        <item>@string/article_category_business_title</item>
+        <item>@string/article_category_entertainment_title</item>
+        <item>@string/article_category_general_title</item>
+        <item>@string/article_category_health_title</item>
+        <item>@string/article_category_science_title</item>
+        <item>@string/article_category_sports_title</item>
+        <item>@string/article_category_technology_title</item>
+    </string-array>
+    <string-array name="article_category_codes">
+        <item>@string/article_category_all_code</item>
+        <item>@string/article_category_business_code</item>
+        <item>@string/article_category_entertainment_code</item>
+        <item>@string/article_category_general_code</item>
+        <item>@string/article_category_health_code</item>
+        <item>@string/article_category_science_code</item>
+        <item>@string/article_category_sports_code</item>
+        <item>@string/article_category_technology_code</item>
+    </string-array>
 </resources>

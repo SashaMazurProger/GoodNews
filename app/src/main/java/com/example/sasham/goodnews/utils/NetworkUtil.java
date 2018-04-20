@@ -33,4 +33,19 @@ public class NetworkUtil {
         ArticlesList articlesList = (ArticlesList) response.body();
         return articlesList.getArticles();
     }
+    public static List<Article> getTopHeadlinesWithCategory(Context context, int count,String categoryCode){
+        Response response = null;
+
+        String keyCountry=context.getString(R.string.articles_settings_country_key);
+        String defCountry=context.getString(R.string.articles_settings_country_default);
+        String codeCountry= SharedPreferencesHelper.getSharedPreferenceString(context,keyCountry,defCountry);
+
+        try {
+            response = App.getNewsApi().getTopHeadlinesWithCategory(codeCountry,count, App.getNewsApiKey(),categoryCode).execute();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        ArticlesList articlesList = (ArticlesList) response.body();
+        return articlesList.getArticles();
+    }
 }

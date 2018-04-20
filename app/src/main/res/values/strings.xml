@@ -26,4 +26,39 @@
     <string name="article_detail_to_website_text">more</string>
     <string name="nav_title_settings">Settings</string>
 
+    //Strings for article categories
+
+
+    <string name="article_category_all_title">All</string>
+    <string name="article_category_all_code" translatable="false">all</string>
+
+    <string name="article_category_business_title">Business</string>
+    <string name="article_category_business_code" translatable="false">business</string>
+
+    <string name="article_category_entertainment_title">Entertainment</string>
+    <string name="article_category_entertainment_code" translatable="false">entertainment</string>
+
+    <string name="article_category_general_title">General</string>
+    <string name="article_category_general_code" translatable="false">general</string>
+
+    <string name="article_category_health_title">Health</string>
+    <string name="article_category_health_code" translatable="false">health</string>
+
+    <string name="article_category_science_title">Science</string>
+    <string name="article_category_science_code" translatable="false">science</string>
+
+    <string name="article_category_sports_title">Sports</string>
+    <string name="article_category_sports_code" translatable="false">sports</string>
+
+    <string name="article_category_technology_title">Technology</string>
+    <string name="article_category_technology_code" translatable="false">technology</string>
+
+    <string name="article_category_default_title">@string/article_category_all_title</string>
+    <string name="article_category_default_code">@string/article_category_all_code</string>
+
+    <string name="article_category_list_title">Category</string>
+
+
+
+
 </resources>

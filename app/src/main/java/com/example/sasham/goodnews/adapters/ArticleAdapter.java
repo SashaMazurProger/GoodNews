@@ -1,4 +1,4 @@
-package com.example.sasham.goodnews.model;
+package com.example.sasham.goodnews.adapters;
 
 import android.content.Context;
 import android.content.Intent;
@@ -12,6 +12,7 @@ import android.widget.TextView;
 
 import com.example.sasham.goodnews.R;
 import com.example.sasham.goodnews.activity.ArticleDetailActivity;
+import com.example.sasham.goodnews.model.Article;
 import com.example.sasham.goodnews.utils.DateUtil;
 import com.squareup.picasso.Picasso;
 
@@ -26,10 +27,12 @@ public class ArticleAdapter extends RecyclerView.Adapter<ArticleAdapter.ArticleV
 
     private Context mContext;
     private List<Article> mArticles;
+    private String mArticleCategory;
 
-    public ArticleAdapter(Context context, List<Article> articles) {
+    public ArticleAdapter(Context context, List<Article> articles,String articleCategory) {
         mContext = context;
         this.mArticles = articles;
+        mArticleCategory = articleCategory;
     }
 
     @Override
@@ -73,7 +76,8 @@ public class ArticleAdapter extends RecyclerView.Adapter<ArticleAdapter.ArticleV
             @Override
             public void onClick(View v) {
                 Intent intent=new Intent(mContext, ArticleDetailActivity.class);
-                intent.putExtra(ArticleDetailActivity.ARTICELE_ARGS,article);
+                intent.putExtra(ArticleDetailActivity.ARTICLE_CATEGORY_ARGS,mArticleCategory);
+                intent.putExtra(ArticleDetailActivity.ARTICLE_ARGS,article);
                 mContext.startActivity(intent);
             }
         });

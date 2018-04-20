@@ -21,7 +21,8 @@ public class ArticleDetailActivity extends AppCompatActivity {
     private ImageView mImage;
     private Button mBtnMore;
     private Article mArticle;
-    public static final String ARTICELE_ARGS = "article";
+    public static final String ARTICLE_ARGS = "article";
+    public static final String ARTICLE_CATEGORY_ARGS = "article_category";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -41,7 +42,8 @@ public class ArticleDetailActivity extends AppCompatActivity {
 
     private void setArticleData() {
 
-        mArticle = (Article) getIntent().getSerializableExtra(ARTICELE_ARGS);
+        mArticle = (Article) getIntent().getSerializableExtra(ARTICLE_ARGS);
+        String category = getIntent().getStringExtra(ARTICLE_CATEGORY_ARGS);
 
         if (mArticle != null) {
             mTitle.setText(mArticle.getTitle());
@@ -59,8 +61,11 @@ public class ArticleDetailActivity extends AppCompatActivity {
             mTimeAgo.setText(time);
 
             //set category of article
-            //TODO: Set article category
-            mCategory.setText("Category");
+            if(category!=null&&!category.isEmpty()) {
+                mCategory.setText(category);
+            }else{
+                mCategory.setText(getString(R.string.article_category_default_title));
+            }
 
             Picasso.get()
                     .load(mArticle.getUrlToImage())
@@ -69,8 +74,8 @@ public class ArticleDetailActivity extends AppCompatActivity {
             mBtnMore.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    Intent intent=new Intent(ArticleDetailActivity.this,ArticleWebActivity.class);
-                    intent.putExtra(ArticleWebActivity.WEB_URL_ARGS,mArticle.getUrl());
+                    Intent intent = new Intent(ArticleDetailActivity.this, ArticleWebActivity.class);
+                    intent.putExtra(ArticleWebActivity.WEB_URL_ARGS, mArticle.getUrl());
                     startActivity(intent);
                 }
             });

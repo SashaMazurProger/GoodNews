@@ -36,7 +36,7 @@ public class NewsFirebaseJobService extends JobService {
                 NotificationCompat.Builder notifBuilder = null;
                 try {
                     Intent intent = new Intent(getApplicationContext(), ArticleDetailActivity.class);
-                    intent.putExtra(ArticleDetailActivity.ARTICELE_ARGS, article);
+                    intent.putExtra(ArticleDetailActivity.ARTICLE_ARGS, article);
 
                     PendingIntent pendingIntent = PendingIntent.getActivity(getApplicationContext(),
                             PENDING_INTENT_REQUEST_CODE,

@@ -22,7 +22,7 @@
                 android:layout_height="?attr/actionBarSize"
                 android:background="@android:color/white"
                 app:layout_scrollFlags="scroll|enterAlways"
-                app:titleTextColor="@android:color/holo_blue_dark"
+                app:titleTextColor="@color/colorPrimary"
                 android:fitsSystemWindows="true"/>
         </android.support.design.widget.AppBarLayout>
 

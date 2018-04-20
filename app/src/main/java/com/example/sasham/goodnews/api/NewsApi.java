@@ -18,7 +18,14 @@ public interface NewsApi {
     @GET("/v2/top-headlines")
     Call<ArticlesList> getTopHeadlines(
             @Query("country") String countryCode,
-            @Query("pageSize")int count,
-            @Query("apiKey") String apiKey);
+            @Query("pageSize") int count,
+            @Query("apiKey") String apiKey);@GET("/v2/top-headlines")
+
+    Call<ArticlesList> getTopHeadlinesWithCategory(
+            @Query("country") String countryCode,
+            @Query("pageSize") int count,
+            @Query("apiKey") String apiKey,
+            @Query("category") String category);
+
 
 }
