@@ -10,7 +10,24 @@
 
     //Country settings
     <string name="articles_settings_country_key" translatable="false">country</string>
-    <string name="articles_settings_country_default" translatable="false">us</string>
+
+    <string name="articles_settings_country_codes" translatable="false">
+        ae,ar,at,au,be,bg,br,ca,ch,cn,co,cu,cz,de,eg,
+        fr,gb,gr,hk,hu,id,ie,il,in,it,jp,kr,lt,lv,ma,
+        mx,my,ng,nl,no,nz,ph,pl,pt,ro,rs,ru,sa,se,sg,
+        si,sk,th,tr,tw,ua,us,ve,za
+    </string>
+
+    <string name="articles_settings_country_prefer_codes" translatable="false">
+        us,ru,in,it,gb,cn,ca
+    </string>
+
+    <string name="articles_settings_country_code_default" translatable="false">
+        us
+    </string>
+
+    <string name="articles_settings_country_title">Country of news</string>
+
 
     //string for corverting article published time
     <string name="time_ago_suffix">ago</string>
@@ -26,8 +43,8 @@
     <string name="article_detail_to_website_text">more</string>
     <string name="nav_title_settings">Settings</string>
 
-    //Strings for article categories
 
+    //Strings for article categories
 
     <string name="article_category_all_title">All</string>
     <string name="article_category_all_code" translatable="false">all</string>
@@ -57,8 +74,10 @@
     <string name="article_category_default_code">@string/article_category_all_code</string>
 
     <string name="article_category_list_title">Category</string>
-    <string name="appwidget_text">EXAMPLE</string>
+
+
     <string name="add_widget">Add widget</string>
+    <string name="version_number">v 1.0</string>
 
 
 </resources>

@@ -18,30 +18,45 @@ import retrofit2.Response;
 
 public class NetworkUtil {
 
-    public static List<Article> getTopHeadlines(Context context, int count){
+    public static List<Article> getTopHeadlines(Context context) {
         Response response = null;
 
-        String keyCountry=context.getString(R.string.articles_settings_country_key);
-        String defCountry=context.getString(R.string.articles_settings_country_default);
-        String codeCountry= SharedPreferencesHelper.getSharedPreferenceString(context,keyCountry,defCountry);
+        String keyCountry = context.getString(R.string.articles_settings_country_key);
+        String defCountry = context.getString(R.string.articles_settings_country_code_default);
+        String codeCountry = SharedPreferencesHelper.getSharedPreferenceString(context, keyCountry, defCountry);
 
         try {
-            response = App.getNewsApi().getTopHeadlines(codeCountry,count, App.getNewsApiKey()).execute();
+            response = App.getNewsApi().getTopHeadlines(codeCountry ,App.getNewsApiKey()).execute();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        ArticlesList articlesList = null;
+        if (response != null) {
+            articlesList = (ArticlesList) response.body();
+        }
+        return articlesList.getArticles();
+    }
+
+    public static List<Article> getTopHeadlinesWithCategory(Context context, String categoryCode, String dateOfNewestArticles) {
+        Response response = null;
+
+        String keyCountry = context.getString(R.string.articles_settings_country_key);
+        String defCountry = context.getString(R.string.articles_settings_country_code_default);
+        String codeCountry = SharedPreferencesHelper.getSharedPreferenceString(context, keyCountry, defCountry);
+
+        try {
+            response = App.getNewsApi().getTopHeadlinesWithCategory(codeCountry, App.getNewsApiKey(), categoryCode).execute();
         } catch (IOException e) {
             e.printStackTrace();
         }
         ArticlesList articlesList = (ArticlesList) response.body();
         return articlesList.getArticles();
     }
-    public static List<Article> getTopHeadlinesWithCategory(Context context, int count,String categoryCode){
+    public static List<Article> getSourceArticles(Context context, String source,int pageSize, int page) {
         Response response = null;
 
-        String keyCountry=context.getString(R.string.articles_settings_country_key);
-        String defCountry=context.getString(R.string.articles_settings_country_default);
-        String codeCountry= SharedPreferencesHelper.getSharedPreferenceString(context,keyCountry,defCountry);
-
         try {
-            response = App.getNewsApi().getTopHeadlinesWithCategory(codeCountry,count, App.getNewsApiKey(),categoryCode).execute();
+            response = App.getNewsApi().getSourceArticles(source, App.getNewsApiKey(),page,pageSize).execute();
         } catch (IOException e) {
             e.printStackTrace();
         }

@@ -1,31 +1,36 @@
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context="com.example.sasham.goodnews.activity.ArticlesSettingsFragment">
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:orientation="vertical">
+        android:orientation="vertical"
+        android:padding="6dp">
+
+        <TextView
+            style="@style/TitleStyle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/articles_settings_country_title"
+            android:textColor="@color/dark_gray" />
 
         <com.hbb20.CountryCodePicker
             android:id="@+id/country_code_picker"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            app:ccp_defaultNameCode="us"
-            app:ccp_countryPreference="us,ru,in,it,gb,cn,ca"
-            app:ccp_customMasterCountries="ae,ar,at,au,be,bg,br,ca,ch,cn,co,cu,cz,de,eg,
-                                           fr,gb,gr,hk,hu,id,ie,il,in,it,jp,kr,lt,lv,ma,
-                                           mx,my,ng,nl,no,nz,ph,pl,pt,ro,rs,ru,sa,se,sg,
-                                           si,sk,th,tr,tw,ua,us,ve,za"
+            app:ccp_countryPreference="@string/articles_settings_country_prefer_codes"
+            app:ccp_customMasterCountries="@string/articles_settings_country_codes"
+            app:ccp_defaultNameCode="@string/articles_settings_country_code_default"
 
-            app:ccp_textGravity="LEFT"
-            app:ccp_showNameCode="false"
+            app:ccp_rememberLastSelection="true"
             app:ccp_showFullName="true"
+            app:ccp_showNameCode="false"
             app:ccp_showPhoneCode="false"
-            app:ccp_rememberLastSelection="true"/>
+            app:ccp_textGravity="LEFT" />
 
     </LinearLayout>
 

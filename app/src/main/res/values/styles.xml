@@ -20,7 +20,7 @@
         <item name="android:textStyle">bold</item>
         <item name="android:textAllCaps">true</item>
     </style>
-    
+
     <!-- Article detail card style-->
     <style name="ArticleDetailsCard">
         <item name="android:background">@android:color/white</item>
@@ -29,7 +29,7 @@
 
     <style name="BaseCardStyle">
         <item name="android:background">@android:color/white</item>
-        <item name="android:layout_margin">4dp</item>
+        <item name="android:layout_margin">0dp</item>
     </style>
 
     <style name="TitleStyle">
@@ -38,6 +38,18 @@
         <item name="android:textAllCaps">true</item>
         <item name="android:textSize">9sp</item>
         <item name="android:textStyle">bold</item>
+    </style>
+
+    <style name="FullscreenTheme" parent="AppTheme">
+        <item name="android:actionBarStyle">@style/FullscreenActionBarStyle</item>
+        <item name="android:windowActionBarOverlay">true</item>
+        <item name="android:windowBackground">@null</item>
+        <item name="metaButtonBarStyle">?android:attr/buttonBarStyle</item>
+        <item name="metaButtonBarButtonStyle">?android:attr/buttonBarButtonStyle</item>
+    </style>
+
+    <style name="FullscreenActionBarStyle" parent="Widget.AppCompat.ActionBar">
+        <item name="android:background">@color/black_overlay</item>
     </style>
 
 </resources>

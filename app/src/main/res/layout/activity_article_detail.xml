@@ -35,80 +35,82 @@
                     android:id="@+id/article_detail_about_category"
                     style="@style/ArticleDetailsCardText"
                     android:layout_weight="1"
-                    android:backgroundTint="@color/cardview_color2"
-                    tools:text="Category"/>
+                    android:backgroundTint="@color/transparent_blue"
+                    tools:text="Category" />
 
                 <TextView
                     android:id="@+id/article_detail_about_source"
                     style="@style/ArticleDetailsCardText"
                     android:layout_weight="1"
-                    android:backgroundTint="@color/cardview_color3" />
+                    android:backgroundTint="@color/transparent_blue" />
 
                 <TextView
                     android:id="@+id/article_detail_about_time_ago"
                     style="@style/ArticleDetailsCardText"
                     android:layout_weight="1"
-                    android:backgroundTint="@color/cardview_color1" />
+                    android:backgroundTint="@color/transparent_blue" />
             </LinearLayout>
         </FrameLayout>
     </android.support.v7.widget.CardView>
 
-    <android.support.v7.widget.CardView
-        android:id="@+id/article_detail_text_container"
-        style="@style/ArticleDetailsCard"
+    <ScrollView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="8dp"
-        app:cardCornerRadius="6dp"
+        android:layout_margin="4dp"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/article_detail_image_container"
-        android:layout_marginLeft="8dp">
+        app:layout_constraintTop_toBottomOf="@+id/article_detail_image_container">
 
-        <android.support.constraint.ConstraintLayout
+        <android.support.v7.widget.CardView
+            android:id="@+id/article_detail_text_container"
+            style="@style/ArticleDetailsCard"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:padding="3dp">
+            android:layout_height="wrap_content"
+            app:cardCornerRadius="2dp">
 
-            <TextView
-                android:id="@+id/article_detail_title"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="8dp"
-                android:layout_marginStart="8dp"
-                android:layout_marginTop="8dp"
-                android:textColor="@android:color/black"
-                android:textSize="20sp"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                tools:text="Title of the article" />
-
-            <TextView
-                android:id="@+id/article_detail_text"
+            <android.support.constraint.ConstraintLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="8dp"
-                android:layout_marginTop="8dp"
-                android:textColor="@color/dark_gray"
-                android:textSize="12sp"
-                app:layout_constraintStart_toStartOf="@+id/article_detail_title"
-                app:layout_constraintTop_toBottomOf="@+id/article_detail_title"
-                tools:text="Americans always wonder about the president’s marriage and have begun dissecting the Trumps’ partnership as his alleged infidelities make headlines."
-                android:layout_marginLeft="8dp" />
+                android:layout_height="match_parent"
+                android:padding="3dp">
 
-            <Button
-                android:id="@+id/btn_article_detail_to_website"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:background="@android:color/transparent"
-                android:text="@string/article_detail_to_website_text"
-                android:textAllCaps="true"
-                android:textColor="@android:color/holo_red_light"
-                android:textSize="14sp"
-                app:layout_constraintEnd_toEndOf="@+id/article_detail_text"
-                app:layout_constraintTop_toBottomOf="@+id/article_detail_text" />
-        </android.support.constraint.ConstraintLayout>
-    </android.support.v7.widget.CardView>
+                <TextView
+                    android:id="@+id/article_detail_title"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="8dp"
+                    android:textColor="@android:color/black"
+                    android:textSize="20sp"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    tools:text="Title of the article" />
+
+                <TextView
+                    android:id="@+id/article_detail_text"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="8dp"
+                    android:layout_marginStart="8dp"
+                    android:layout_marginTop="8dp"
+                    android:textColor="@color/dark_gray"
+                    android:textSize="16sp"
+                    app:layout_constraintStart_toStartOf="@+id/article_detail_title"
+                    app:layout_constraintTop_toBottomOf="@+id/article_detail_title"
+                    tools:text="Americans always wonder about the president’s marriage and have begun dissecting the Trumps’ partnership as his alleged infidelities make headlines." />
+
+                <Button
+                    android:id="@+id/btn_article_detail_to_website"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="@android:color/transparent"
+                    android:text="@string/article_detail_to_website_text"
+                    android:textAllCaps="true"
+                    android:textColor="@android:color/holo_red_light"
+                    android:textSize="12sp"
+                    android:layout_margin="20dp"
+                    app:layout_constraintEnd_toEndOf="@+id/article_detail_text"
+                    app:layout_constraintTop_toBottomOf="@+id/article_detail_text" />
+            </android.support.constraint.ConstraintLayout>
+        </android.support.v7.widget.CardView>
+    </ScrollView>
 
 
 </android.support.constraint.ConstraintLayout>

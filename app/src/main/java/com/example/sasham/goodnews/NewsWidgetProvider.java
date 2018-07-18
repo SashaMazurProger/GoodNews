@@ -1,9 +1,13 @@
 package com.example.sasham.goodnews;
 
+import android.app.PendingIntent;
 import android.appwidget.AppWidgetManager;
 import android.appwidget.AppWidgetProvider;
 import android.content.Context;
+import android.content.Intent;
 import android.widget.RemoteViews;
+
+import com.example.sasham.goodnews.activity.NewsActivity;
 
 /**
  * Implementation of App Widget functionality.
@@ -13,10 +17,14 @@ public class NewsWidgetProvider extends AppWidgetProvider {
     static void updateAppWidget(Context context, AppWidgetManager appWidgetManager,
                                 int appWidgetId) {
 
-        CharSequence widgetText = context.getString(R.string.appwidget_text);
+        CharSequence widgetText = "sf";
         // Construct the RemoteViews object
         RemoteViews views = new RemoteViews(context.getPackageName(), R.layout.news_widget_provider);
         views.setTextViewText(R.id.appwidget_text, widgetText);
+
+        Intent intent=new Intent(context, NewsActivity.class);
+        PendingIntent pendingIntent=PendingIntent.getActivity(context,0,intent,0);
+        views.setOnClickPendingIntent(R.id.widget_image,pendingIntent);
 
         // Instruct the widget manager to update the widget
         appWidgetManager.updateAppWidget(appWidgetId, views);

@@ -20,6 +20,7 @@ public class ArticleLoader extends AsyncTaskLoader<List<Article>> {
     public static final String CATEGORY_ARTICLE_ARGS = "article_category";
     private final String mCategoryCode;
 
+
     public ArticleLoader(Context context, Bundle args) {
         super(context);
         mCategoryCode = args.getString(CATEGORY_ARTICLE_ARGS);
@@ -35,15 +36,16 @@ public class ArticleLoader extends AsyncTaskLoader<List<Article>> {
     @Override
     public List<Article> loadInBackground() {
         Log.d(TAG, "loadInBackground: ---");
-        int count = getContext().getResources().getInteger(R.integer.MAX_COUNT_TOP_HEADLINES);
-        Log.d(TAG, "loadInBackground: count articles:" + count);
 
         String categotyAll = getContext().getString(R.string.article_category_all_code);
 
-        if (mCategoryCode.equals(categotyAll))
-            return NetworkUtil.getTopHeadlines(getContext(), count);
-        else {
-            return NetworkUtil.getTopHeadlinesWithCategory(getContext(),count,mCategoryCode);
+        List<Article> articles = null;
+        if (mCategoryCode.equals(categotyAll)) {
+            articles = NetworkUtil.getTopHeadlines(getContext());
+        } else {
+            articles = NetworkUtil.getTopHeadlinesWithCategory(getContext(), mCategoryCode, null);
         }
+
+        return articles;
     }
 }

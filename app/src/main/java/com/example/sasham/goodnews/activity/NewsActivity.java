@@ -57,7 +57,7 @@ public class NewsActivity extends AppCompatActivity {
         CoordinatorLayout.LayoutParams layoutParams = (CoordinatorLayout.LayoutParams) navigation.getLayoutParams();
         layoutParams.setBehavior(new BottomNavigationBehavior());
 
-        Toolbar toolbar = (Toolbar) findViewById(R.id.main_toolbar);
+        Toolbar toolbar = (Toolbar) findViewById(R.id.base_toolbar);
         setSupportActionBar(toolbar);
 
         setDefaultContent();
@@ -73,20 +73,20 @@ public class NewsActivity extends AppCompatActivity {
     }
 
     private void initFirebaseJobDispatcher() {
-        FirebaseJobDispatcher firebaseJobDispatcher = new FirebaseJobDispatcher(new GooglePlayDriver(this));
-
-        Job job = firebaseJobDispatcher.newJobBuilder()
-                .setService(NewsFirebaseJobService.class)
-                .setTag(SHOW_LAST_ARTICLE_JOB_SERVICE_TAG)
-                .setLifetime(Lifetime.UNTIL_NEXT_BOOT)
-                .setRecurring(true)
-                .setTrigger(Trigger.executionWindow(0, 5))
-                .setReplaceCurrent(false)
-                .setConstraints(Constraint.ON_ANY_NETWORK)
-                .build();
-
-        firebaseJobDispatcher.mustSchedule(job);
-        Log.d(TAG, "initFirebaseJobDispatcher: ok");
+//        FirebaseJobDispatcher firebaseJobDispatcher = new FirebaseJobDispatcher(new GooglePlayDriver(this));
+//
+//        Job job = firebaseJobDispatcher.newJobBuilder()
+//                .setService(NewsFirebaseJobService.class)
+//                .setTag(SHOW_LAST_ARTICLE_JOB_SERVICE_TAG)
+//                .setLifetime(Lifetime.UNTIL_NEXT_BOOT)
+//                .setRecurring(true)
+//                .setTrigger(Trigger.executionWindow(0, 5))
+//                .setReplaceCurrent(false)
+//                .setConstraints(Constraint.ON_ANY_NETWORK)
+//                .build();
+//
+//        firebaseJobDispatcher.mustSchedule(job);
+//        Log.d(TAG, "initFirebaseJobDispatcher: ok");
     }
 
 }

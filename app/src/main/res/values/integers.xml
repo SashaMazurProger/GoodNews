@@ -1,4 +1,4 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <integer name="MAX_COUNT_TOP_HEADLINES">20</integer>
+    <integer name="MAX_COUNT_TOP_HEADLINES">70</integer>
 </resources>

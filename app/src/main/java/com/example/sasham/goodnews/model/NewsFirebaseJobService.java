@@ -31,7 +31,7 @@ public class NewsFirebaseJobService extends JobService {
         new AsyncTask<Void, Void, Void>() {
             @Override
             protected Void doInBackground(Void... voids) {
-                Article article = NetworkUtil.getTopHeadlines(getApplicationContext(), 1).get(0);
+                Article article = NetworkUtil.getTopHeadlines(getApplicationContext()).get(0);
 
                 NotificationCompat.Builder notifBuilder = null;
                 try {
